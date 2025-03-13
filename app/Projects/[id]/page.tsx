@@ -4,50 +4,19 @@ import React from "react";
 import { useParams } from "next/navigation";
 import Preloader from "@/components/Loding";
 import Footer from "@/components/Footer";
-import { projects } from "@/lib/Data";
-
-interface ProjectInfoItem {
-  label: string;
-  type: "list" | "text" | "link";
-  items?: string[];
-  text?: string;
-  href?: string;
-}
-
-const projectInfoData: ProjectInfoItem[] = [
-  {
-    label: "Services:",
-    type: "list",
-    items: ["Item", "Item"],
-  },
-  {
-    label: "Client:",
-    type: "text",
-    text: "FlaTheme",
-  },
-  {
-    label: "Project link:",
-    type: "link",
-    text: "www.flatheme.net",
-    href: "#",
-  },
-  {
-    label: "Duration:",
-    type: "text",
-    text: "124 Hours",
-  },
-];
+import { projectsData } from "@/lib/Data";
 
 const ProjectDetails: React.FC = () => {
-  const { id } = useParams();
-  const project = projects.find((proj) => proj.id === id);
+  // استخدام useParams للحصول علي ال id من الرابط
+  const params = useParams();
+  const { id } = params as { id: string };
+  
+  // إيجاد بيانات المشروع بناءً علي ال id
+  const project = projectsData.find((p) => p.id === id);
 
-  if (!project)
-    return (
-      <div className="container mx-auto py-24">
-        <h2 className="text-3xl font-bold text-center">Project not found</h2>
-      </div>
-    );
+  if (!project) {
+    return <div className="container mx-auto py-20 text-white">Project not found</div>;
+  }
 
   return (
     <>
@@ -55,16 +24,16 @@ const ProjectDetails: React.FC = () => {
         <div className="py-24 xl:py-28">
           <div className="md:mx-auto md:w-3/4 lg:w-2/3">
             <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-              Project{" "}
+              {project.title.split(" ")[0]}{" "}
               <span className="bg-themeGradient bg-clip-text text-transparent">
-                {project.title}
+                {project.title.split(" ").slice(1).join(" ")}
               </span>
             </h2>
             <p className="text-white/70">{project.description}</p>
           </div>
           {/* Project Info باستخدام map */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-            {projectInfoData.map((item, index) => (
+            {project.info.map((item, index) => (
               <div
                 key={index}
                 className="z-[1] p-8 space-y-1.5 bg-darkBg rounded-lg relative overflow-hidden before:content-[''] before:absolute before:-z-[1] before:left-0 before:top-0 before:w-full before:h-full before:bg-themeGradient before:opacity-0 hover:before:opacity-10 before:transition-all before:ease-linear before:duration-100 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-themeGradient"
@@ -105,22 +74,23 @@ const ProjectDetails: React.FC = () => {
         <div className="bg-darkBg rounded-2xl overflow-hidden py-20">
           <div className="container mx-auto max-w-[1320px] px-5">
             <div className="md:mx-auto md:w-3/4 lg:w-2/3">
-              <p className="text-white/70">
-                {project.details || "تفاصيل المشروع هتضاف هنا."}
-              </p>
+              <p className="text-white/70">{project.content}</p>
               <h5 className="text-2xl font-outfit font-medium text-white mt-6 mb-2">
                 Heading
               </h5>
               <p className="text-white/70">
-                المزيد من التفاصيل...
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
 
             <div className="mt-6 lg:mt-12">
               <img
                 className="rounded-lg"
-                src={project.image}
-                alt={project.title}
+                src={project.wideImage}
+                alt="Portfolio Image"
               />
             </div>
 
@@ -129,12 +99,12 @@ const ProjectDetails: React.FC = () => {
               <div className="overflow-hidden rounded-lg">
                 <a
                   className="glightbox group block relative before:content-[''] before:z-[1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-themeGradient before:opacity-0 hover:before:opacity-10 before:transition-all before:ease-linear before:duration-100"
-                  href={project.image}
+                  href={project.lightboxImages[0].src}
                 >
                   <img
                     className="group-hover:scale-105 transition ease-custom duration-500"
-                    src={project.image}
-                    alt={project.title}
+                    src={project.lightboxImages[0].src}
+                    alt={project.lightboxImages[0].alt}
                   />
                   <span className="inline-flex justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-black/20 backdrop-blur text-white">
                     <i className="bi bi-arrows-fullscreen"></i>
@@ -145,12 +115,12 @@ const ProjectDetails: React.FC = () => {
               <div className="overflow-hidden rounded-lg">
                 <a
                   className="glightbox group block relative before:content-[''] before:z-[1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-themeGradient before:opacity-0 hover:before:opacity-10 before:transition-all before:ease-linear before:duration-100"
-                  href={project.video || "https://www.youtube.com/watch?v=V8yu12uRpBA"}
+                  href={project.videoLink}
                 >
                   <img
                     className="group-hover:scale-105 transition ease-custom duration-500"
-                    src={project.image}
-                    alt={project.title}
+                    src={project.lightboxImages[0].src}
+                    alt={project.lightboxImages[0].alt}
                   />
                   <span className="inline-flex justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-black/20 backdrop-blur text-white text-lg">
                     <i className="bi bi-play-fill"></i>
@@ -192,6 +162,7 @@ const ProjectDetails: React.FC = () => {
       </div>
       <Preloader />
       <Footer />
+      {/* end Project Details */}
     </>
   );
 };

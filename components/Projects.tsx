@@ -1,9 +1,39 @@
-"use client";
-
 import React, { useState } from "react";
-import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { portfolioItems } from "@/lib/Data";  
+import Link from "next/link";
+
+
+interface PortfolioItem {
+  id: number;
+  title: string;
+  image: string;
+  categories: string[];
+  link: string;
+}
+
+const portfolioItems: PortfolioItem[] = [
+  {
+    id: 1,
+    title: "Project Title Here",
+    image: "/portfolio-img-wide.jpg",
+    categories: ["Category", "Category", "Category"],
+    link: "portfolio-single.html",
+  },
+  {
+    id: 2,
+    title: "Project Title Here",
+    image: "/portfolio-img-wide.jpg",
+    categories: ["Category", "Category", "Category"],
+    link: "portfolio-single.html",
+  },
+  {
+    id: 3,
+    title: "Project Title Here",
+    image: "/public/portfolio-img-3.jpg",
+    categories: ["Category", "Category", "Category"],
+    link: "portfolio-single.html",
+  },
+];
 
 const Portfolio: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
@@ -35,7 +65,7 @@ const Portfolio: React.FC = () => {
             <p className="leading-[1.75] text-white/70 mt-3">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation.
+              enim ad minim veniam, quis nostrud exercitation
             </p>
             <div className="space-x-1 mt-6">
               <button
@@ -65,42 +95,50 @@ const Portfolio: React.FC = () => {
             >
               {portfolioItems.map((item) => (
                 <div key={item.id} className="min-w-full px-2">
-                  <Link href={`/portfolio/${item.id}`}>
-                    {/* في Next.js 13 ممكن تحذف الوسم <a> لو بتستخدم Link بالطريقة الجديدة */}
-                    <a className="group relative block cursor-pointer">
-                      <div className="overflow-hidden relative rounded-2xl">
+                  <div className="group relative">
+                    <div className="overflow-hidden relative rounded-2xl">
+                      <a href={item.link} className="block relative">
                         <img
                           src={item.image}
                           alt={item.title}
                           className="group-hover:scale-105 transition-transform duration-500 ease-custom"
                         />
-                      </div>
-                      <div className="pt-6">
-                        <ul className="text-white font-outfit font-medium uppercase text-sm tracking-wider">
-                          {item.categories.map((cat, index) => (
-                            <li
-                              key={index}
-                              className={`list-none inline-block leading-none ${
-                                index > 0
-                                  ? "relative pl-[14px] pr-[4px] before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:rounded-md before:bg-white/80"
-                                  : "pr-[4px]"
-                              }`}
-                            >
-                              <span>{cat}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="mt-2">
-                          <h2 className="relative font-outfit font-medium text-3xl">
+                      </a>
+                    </div>
+                    <div className="pt-6">
+                      <ul className="text-white font-outfit font-medium uppercase text-sm tracking-wider">
+                        {item.categories.map((cat, index) => (
+                          <li
+                            key={index}
+                            className={`list-none inline-block leading-none ${
+                              index > 0
+                                ? "relative pl-[14px] pr-[4px] before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:rounded-md before:bg-white/80"
+                                : "pr-[4px]"
+                            }`}
+                          >
+                            <a href="#" className="inline-block overflow-hidden">
+                              <span className="block relative text-transparent before:content-[attr(data-text)] before:absolute before:top-0 before:left-0 before:opacity-100 before:text-white before:transition-all before:ease-out before:duration-200 hover:before:-top-full hover:before:opacity-0 after:content-[attr(data-text)] after:absolute after:top-full after:left-0 after:opacity-0 after:text-white after:transition-all after:ease-out after:duration-200 hover:after:top-0 hover:after:opacity-100" data-text={cat}>
+                                {cat}
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-2">
+                        <h2 className="relative font-outfit font-medium text-3xl">
+                          <Link
+                            href={item.link}
+                            className="text-white transition-all ease-out duration-200 hover:pl-[44px]"
+                          >
                             <span className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 opacity-0 transition duration-100 group-hover:opacity-100 group-hover:translate-x-0">
                               <ArrowRight size={16} />
                             </span>
                             {item.title}
-                          </h2>
-                        </div>
+                          </Link>
+                        </h2>
                       </div>
-                    </a>
-                  </Link>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

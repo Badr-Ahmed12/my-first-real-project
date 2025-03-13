@@ -1,36 +1,59 @@
-
-export const projects = [
+// data.ts
+export interface ProjectInfoItem {
+    label: string;
+    type: "list" | "text" | "link";
+    items?: string[];
+    text?: string;
+    href?: string;
+  }
+  
+  export interface ProjectData {
+    id: string;
+    title: string;
+    description: string;
+    info: ProjectInfoItem[];
+    content: string;
+    wideImage: string;
+    lightboxImages: { src: string; alt: string }[];
+    videoLink: string;
+  }
+  
+  export const projectsData: ProjectData[] = [
     {
-      id: "brainwave",
-      title: "BrainWave AI",
-      description: "Landing page for AI chatbot service.",
-      image: "/images/brainwave.png",
-      link: "https://wavebrain.vercel.app/",
-      github: "https://github.com/Badr-Ahmed12/Wavebrain.git",
+      id: "1",
+      title: "Project Title One",
+      description:
+        " sit amet, consectetur adipisicing elit. تفاصيل المشروع بتتغير علي حسب ال id.",
+      info: [
+        {
+          label: "Services:",
+          type: "list",
+          items: ["Item 1", "Item 2"],
+        },
+        {
+          label: "Client:",
+          type: "text",
+          text: "FlaTheme",
+        },
+        {
+          label: "Project link:",
+          type: "link",
+          text: "www.flatheme.net",
+          href: "#",
+        },
+        {
+          label: "Duration:",
+          type: "text",
+          text: "124 Hours",
+        },
+      ],
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      wideImage: "assets/images/portfolio-img-wide.jpg",
+      lightboxImages: [
+        { src: "/blog-img-wide.jpg", alt: "Portfolio Image" },
+      ],
+      videoLink: "https://www.youtube.com/watch?v=V8yu12uRpBA",
     },
-    {
-      id: "profile-landing",
-      title: "Landing Page Profile",
-      description: "Personal profile landing page with animations.",
-      image: "/images/profile-landing.png",
-      link: "https://landing-page-profile-1ojj.vercel.app/",
-      github: "https://github.com/Badr-Ahmed12/Landing-Page-Profile",
-    },
-  ];  
-
-export const portfolioItems = [
-    {
-      id: "project1",
-      title: "Project One",
-      image: "/images/project1.jpg",
-      categories: ["UI/UX", "Web Design"],
-    },
-    {
-      id: "project2",
-      title: "Project Two",
-      image: "/images/project2.jpg",
-      categories: ["Mobile", "App Design"],
-    },
-    
-  ];
+   ];
   
