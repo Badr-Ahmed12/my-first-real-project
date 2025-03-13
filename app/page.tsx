@@ -7,7 +7,7 @@ import AboutSection from '@/components/About';
 import Services from '@/components/Services';
 import Awards from '@/components/Awardes';
 import TestimonialSection from '@/components/testmonials';
-import ContactSection from '@/components/contact';
+import ContactSection from '@/components/Contact'; // Fix module not found error
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/Scroll';
 import Preloader from '@/components/Loding';
@@ -30,3 +30,4 @@ export default function Home() {
     </div>
   );
 }
+
