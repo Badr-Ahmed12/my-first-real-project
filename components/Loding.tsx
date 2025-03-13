@@ -1,16 +1,40 @@
-export default function Loading() {
-    return (
-        <div className="preloader z-30 fixed top-0 left-0 visible opacity-100 bg-black w-full h-full text-center transition-all ease-out duration-500">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex space-x-4 font-outfit font-normal uppercase text-white">
-                {'LOADING'.split('').map((char, index) => (
-                    <span
-                        key={index}
-                        className={`opacity-100 inline-block transition ease-linear duration-100 animate-loader animation-delay-${index * 100}`}
-                    >
-                        {char}
-                    </span>
-                ))}
-            </div>
-        </div>
-    );
-}
+"use client";
+
+import { useEffect, useState } from "react";
+
+type PreloaderProps = {};
+
+const Preloader = (_props: PreloaderProps) => {
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 3000); // وقت الإخفاء بعد 3 ثوانٍ
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div
+      className={`fixed inset-0 bg-black flex justify-center items-center transition-opacity duration-500 ${
+        isVisible ? "opacity-100" : "opacity-0 hidden"
+      }`}
+      style={{ zIndex: 9999 }}
+    >
+      <div className="flex space-x-4 font-outfit font-normal uppercase text-white">
+        {["L", "O", "A", "D", "I", "N", "G"].map((letter, index) => (
+          <span
+            key={index}
+            className="opacity-100 inline-block transition ease-linear duration-100 animate-loader"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            {letter}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Preloader;
+

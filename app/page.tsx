@@ -1,35 +1,32 @@
-import About from "@/components/About";
-import Awards from "@/components/Awards";
-import Blog from "@/components/blog";
-import Client from "@/components/Client";
-import Contact from "@/components/Contact";
-import Cuotser from "@/components/cuotser";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Loading from "@/components/Loding";
-import Others from "@/components/others";
-import Portfolio from "@/components/Portfolio";
-import Services from "@/components/Services";
-import Testimonial from "@/components/test";
+"use client";
+
+import React from 'react';
+import Header from '@/components/Header';
+import Projects from '@/components/Projects';
+import AboutSection from '@/components/About';
+import Services from '@/components/Services';
+import Awards from '@/components/Awardes';
+import TestimonialSection from '@/components/testmonials';
+import ContactSection from '@/components/contact';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/Scroll';
+import Preloader from '@/components/Loding';
+import Cursor from '@/components/cursor';
 
 export default function Home() {
   return (
-    <>
-    <Header /> 
-    <Hero />
-    <About /> 
-    <Services />
-    <Client />
-    <Portfolio /> 
-    <Awards />
-    <Testimonial />
-    <Blog />
-    <Contact />
-    <Footer />
-    <Others />
-    <Loading />
-    <Cuotser />
-    </>
-  )
+    <div>
+      <Header />
+      <AboutSection />
+      <Services />
+      <Projects />
+      <Awards />
+      <TestimonialSection />
+      <ContactSection />
+      <Footer />
+      <ScrollToTop />
+      <Preloader />
+      <Cursor />
+    </div>
+  );
 }

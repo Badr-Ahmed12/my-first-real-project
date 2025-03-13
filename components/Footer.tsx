@@ -1,8 +1,12 @@
-export default function Footer() {
+const Footer = () => {
     return (
-        <footer className="container flex items-center justify-center px-5 py-9 xl:py-10 space-x-2">
-            <p className="text-white/70">&copy; {new Date().getFullYear()}</p>
-            <span className="text-white">FlaTheme</span>
-        </footer>
+      <div className="container text-center px-5 py-9 xl:py-10">
+        <p className="text-white/70">
+          &copy; {new Date().getFullYear()} FlaTheme, All Rights Reserved.
+        </p>
+      </div>
     );
-}
+  };
+  
+  export default Footer;
+  
