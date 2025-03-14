@@ -30,7 +30,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 3,
     title: "Project Title Here",
-    image: "/public/portfolio-img-3.jpg",
+    image: "/portfolio-img-3.jpg",
     categories: ["Category", "Category", "Category"],
     link: "portfolio-single.html",
   },
@@ -103,8 +103,9 @@ const Portfolio: React.FC = () => {
                           src={item.image}
                           alt={item.title}
                           className="group-hover:scale-105 transition-transform duration-500 ease-custom"
-                          width={800}
-                          height={600}
+                          loading="lazy"
+                          width={1250}
+                          height={500}
                         />
                       </a>
                     </div>
