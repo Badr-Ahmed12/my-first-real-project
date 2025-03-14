@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Preloader from "@/components/Loding";
 import Footer from "@/components/Footer";
 import { projectsData } from "@/lib/Data";
+import Image from "next/image";
 
 const ProjectDetails: React.FC = () => {
   // استخدام useParams للحصول علي ال id من الرابط
@@ -87,10 +88,13 @@ const ProjectDetails: React.FC = () => {
             </div>
 
             <div className="mt-6 lg:mt-12">
-              <img
+              <Image
                 className="rounded-lg"
                 src={project.wideImage}
                 alt="Portfolio Image"
+                width={1200}
+                height={800}
+                priority
               />
             </div>
 
@@ -101,10 +105,13 @@ const ProjectDetails: React.FC = () => {
                   className="glightbox group block relative before:content-[''] before:z-[1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-themeGradient before:opacity-0 hover:before:opacity-10 before:transition-all before:ease-linear before:duration-100"
                   href={project.lightboxImages[0].src}
                 >
-                  <img
+                  <Image
                     className="group-hover:scale-105 transition ease-custom duration-500"
                     src={project.lightboxImages[0].src}
                     alt={project.lightboxImages[0].alt}
+                    width={600}
+                    height={400}
+                    priority
                   />
                   <span className="inline-flex justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-black/20 backdrop-blur text-white">
                     <i className="bi bi-arrows-fullscreen"></i>
@@ -117,10 +124,13 @@ const ProjectDetails: React.FC = () => {
                   className="glightbox group block relative before:content-[''] before:z-[1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-themeGradient before:opacity-0 hover:before:opacity-10 before:transition-all before:ease-linear before:duration-100"
                   href={project.videoLink}
                 >
-                  <img
+                  <Image
                     className="group-hover:scale-105 transition ease-custom duration-500"
                     src={project.lightboxImages[0].src}
                     alt={project.lightboxImages[0].alt}
+                    width={600}
+                    height={400}
+                    priority
                   />
                   <span className="inline-flex justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-black/20 backdrop-blur text-white text-lg">
                     <i className="bi bi-play-fill"></i>

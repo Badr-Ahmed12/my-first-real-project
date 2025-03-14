@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 interface PortfolioItem {
@@ -98,10 +99,12 @@ const Portfolio: React.FC = () => {
                   <div className="group relative">
                     <div className="overflow-hidden relative rounded-2xl">
                       <a href={item.link} className="block relative">
-                        <img
+                        <Image
                           src={item.image}
                           alt={item.title}
                           className="group-hover:scale-105 transition-transform duration-500 ease-custom"
+                          width={800}
+                          height={600}
                         />
                       </a>
                     </div>
@@ -150,3 +153,4 @@ const Portfolio: React.FC = () => {
 };
 
 export default Portfolio;
+
