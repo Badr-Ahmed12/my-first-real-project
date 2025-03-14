@@ -5,9 +5,9 @@ import Header from '@/components/Header';
 import Projects from '@/components/Projects';
 import AboutSection from '@/components/About';
 import Services from '@/components/Services';
-import Awards from '@/components/Awardes';
+import Awards from '@/components/Awards';
 import TestimonialSection from '@/components/testmonials';
-import ContactSection from '@/components/Contact'; // Fix module not found error
+import ContactSection from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/Scroll';
 import Preloader from '@/components/Loding';
@@ -20,7 +20,7 @@ export default function Home() {
       <AboutSection />
       <Services />
       <Projects />
-      <Awards />
+      <Awards awards={awardsData} />
       <TestimonialSection />
       <ContactSection />
       <Footer />
