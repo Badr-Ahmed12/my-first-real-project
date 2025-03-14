@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { Mail, Phone , Send } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
 
 type FormFields = {
   name: string;
@@ -31,7 +31,7 @@ const ContactSection = () => {
     try {
       console.log(formData);
       setStatus('success');
-    } catch (error) {
+    } catch {
       setStatus('error');
     }
   };
@@ -41,7 +41,7 @@ const ContactSection = () => {
       <div className="w-full lg:flex space-y-6 lg:space-y-0">
         <div className="w-full lg:w-1/3">
           <h6 className="pl-[20px] relative font-outfit font-medium text-sm uppercase tracking-wider text-white/40 before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[12px] before:h-[12px] before:rounded-full before:border-2 before:border-white/30">Contact</h6>
-          <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl text-white mt-2">Let's <span className="bg-themeGradient bg-clip-text text-transparent">Talk</span></h2>
+          <h2 className="font-outfit font-medium text-4xl md:text-5xl lg:text-6xl text-white mt-2">Let&#39;s <span className="bg-themeGradient bg-clip-text text-transparent">Talk</span></h2>
         </div>
         <div className="w-full lg:w-2/3">
           <div className="flex">

@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type PreloaderProps = {};
-
-const Preloader = (_props: PreloaderProps) => {
+const Preloader = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
